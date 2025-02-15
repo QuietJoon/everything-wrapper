@@ -1,0 +1,12 @@
+[package]
+name = "everything_wrapper"
+version = "0.1.0"
+edition = "2021"
+authors = ["YongJoon Joe", "developer@yongjoon.net"]
+description = "Simple wrapper for everything-rs"
+include = ["src/lib.rs", "src/util.rs", "src/wrap.rs"]
+
+[dependencies]
+everything-rs = "^0.1.9"
+chrono = "^0.4"
+derive_more = { version ="^2", features = ["display"] }
