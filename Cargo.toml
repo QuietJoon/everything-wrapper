@@ -8,5 +8,6 @@ include = ["src/lib.rs", "src/util.rs", "src/wrap.rs"]
 
 [dependencies]
 everything-rs = "^0.1.9"
+everything-sys-bindgen = "^0.1.5"
 chrono = "^0.4"
 derive_more = { version ="^2", features = ["display"] }

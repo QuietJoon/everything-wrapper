@@ -4,6 +4,7 @@ use everything_rs::{Everything, EverythingRequestFlags};
 
 // re-export EverythingSort
 pub use everything_rs::EverythingSort;
+pub use everything_sys_bindgen::DWORD;
 
 #[derive(Clone, Debug, Display, PartialEq, Eq)]
 pub enum FileType {
@@ -27,6 +28,7 @@ pub struct Item {
 pub fn search(
     query: &str,
     sort_by: EverythingSort,
+    search_max_limit: u32,
 ) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
     let everything = Everything::new();
 
@@ -40,6 +42,7 @@ pub fn search(
     );
 
     everything.set_sort(sort_by);
+    everything.set_max_results(search_max_limit as DWORD);
     everything.query()?;
 
     let item_count = everything.get_num_results();
@@ -92,36 +95,36 @@ pub fn search(
     Ok(items)
 }
 
-pub fn search_by_pa(query: &str) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
-    search(query, EverythingSort::PathAscending)
+pub fn search_by_pa(query: &str, search_max_limit: u32) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
+    search(query, EverythingSort::PathAscending, search_max_limit)
 }
 
-pub fn search_by_pd(query: &str) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
-    search(query, EverythingSort::PathDescending)
+pub fn search_by_pd(query: &str, search_max_limit: u32) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
+    search(query, EverythingSort::PathDescending, search_max_limit)
 }
 
-pub fn search_by_mda(query: &str) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
-    search(query, EverythingSort::DateModifiedAscending)
+pub fn search_by_mda(query: &str, search_max_limit: u32) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
+    search(query, EverythingSort::DateModifiedAscending, search_max_limit)
 }
 
-pub fn search_by_mdd(query: &str) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
-    search(query, EverythingSort::DateModifiedDescending)
+pub fn search_by_mdd(query: &str, search_max_limit: u32) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
+    search(query, EverythingSort::DateModifiedDescending, search_max_limit)
 }
 
-pub fn search_by_cda(query: &str) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
-    search(query, EverythingSort::DateCreatedAscending)
+pub fn search_by_cda(query: &str, search_max_limit: u32) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
+    search(query, EverythingSort::DateCreatedAscending, search_max_limit)
 }
 
-pub fn search_by_cdd(query: &str) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
-    search(query, EverythingSort::DateCreatedDescending)
+pub fn search_by_cdd(query: &str, search_max_limit: u32) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
+    search(query, EverythingSort::DateCreatedDescending, search_max_limit)
 }
 
-pub fn search_by_sa(query: &str) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
-    search(query, EverythingSort::SizeAscending)
+pub fn search_by_sa(query: &str, search_max_limit: u32) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
+    search(query, EverythingSort::SizeAscending, search_max_limit)
 }
 
-pub fn search_by_sd(query: &str) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
-    search(query, EverythingSort::SizeDescending)
+pub fn search_by_sd(query: &str, search_max_limit: u32) -> Result<Vec<Item>, Box<dyn std::error::Error>> {
+    search(query, EverythingSort::SizeDescending, search_max_limit)
 }
 
 // Only for debugging purposes

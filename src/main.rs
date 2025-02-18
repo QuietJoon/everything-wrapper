@@ -55,7 +55,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         );
     }
 
-    let result = search("system32 folder:", EverythingSort::PathAscending);
+    let result = search("data c:\\",EverythingSort::PathAscending, 6);
     show_results(result.unwrap());
 
     Ok(())
