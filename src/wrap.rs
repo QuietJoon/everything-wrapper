@@ -11,6 +11,7 @@ pub enum FileType {
     Dir,
     File,
 }
+#[derive(Clone, Debug)]
 pub struct Item {
     pub file_type: FileType,
     pub full_path: String,
